@@ -1,10 +1,16 @@
 import React from 'react'
+import { Button } from '@/components/ui/button'
 
 const page = () => {
   return (
-    <div className='flex bg-red-500'>
-      <p>My</p>
-      <p>Page</p>
+    <div className=''>
+      <h1>Home</h1>
+      <div className="flex items-center justify-between">
+        <h1>Snippets</h1>
+        <Button>New</Button>
+      </div>
+      
+      
     </div>
   )
 }
