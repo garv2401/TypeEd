@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from '@/components/ui/input'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 
 
@@ -21,8 +22,6 @@ const page = () => {
             code:code
           }
         })
-
-        //console.log(snippet);
         redirect("/");
         
         
@@ -42,14 +41,12 @@ const page = () => {
         <Textarea id='code' name='code'/>
         </div>
 
-        <Button type='submit' className='mt-4'>New</Button>
+        <div className="flex flex-row gap-2">
+        <Button type='submit' className='mt-4'>Save</Button>
+        <Button className='mt-4'><Link href={`/`} scroll={true}>Back</Link></Button> 
+        </div>
         </form>
-
-
     </div>
-    
-
-    
   )
 }
 
