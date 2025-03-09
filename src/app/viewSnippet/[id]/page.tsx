@@ -9,7 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 //import { useRouter } from "next/router";
 
 export default async function SnippetDetail({ params }: { params: { id: string } }) {
-    const snippetId =Number(params.id); // Convert to number (without await)
+    const snippetId =parseInt((await params).id); // Convert to number (without await)
 
     if (isNaN(snippetId)) return notFound();
     
@@ -19,6 +19,7 @@ export default async function SnippetDetail({ params }: { params: { id: string }
     const snippet = await prisma.snippet.findUnique({
         where: { id: snippetId }, // Use correct ID format
     });
+    //const snippet=await getSnippet((await params).id);
 
     if(!snippet) return notFound();
 
@@ -30,14 +31,15 @@ export default async function SnippetDetail({ params }: { params: { id: string }
     // }
     return (
         <div className="w-full">
-            <div className="w-full flex flex-row justify-between items-center mb-2">
+            <div className="w-full flex flex-row justify-between items-center mb-5">
             <h1 className="font-bold text-2xl">{snippet.title}</h1>
             <div className="flex flex-row gap-3 justify-around ">
                 <Button><Link href={"/"} scroll={true}>Back</Link></Button>  
                 <Button><Link href={`/viewSnippet/${params.id}/edit`} scroll={true}>Edit</Link></Button>
+                {/* <Button variant={"destructive"} onClick={()=>handleDelete()}>Delete</Button> */}
             </div>
             </div>
-            <pre className="bg-gray-100 p-4 rounded">{snippet.code}</pre>
+            <pre className="bg-gray-200 p-4 rounded text-lg border-gray-300">{snippet.code}</pre>
         </div>
     );
 }

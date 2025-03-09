@@ -28,22 +28,22 @@ const page = () => {
     }
   return (
     <div className="">
-        <h1>Create New Snippet</h1>
-        <form className="" action={createSnippet}>
+        <h1 className='text-xl font-bold py-5'>Create New Snippet</h1>
+        <form className="flex flex-col gap-3" action={createSnippet}>
         
         <div className="">
-        <Label htmlFor="title">Title:</Label>
+        <Label htmlFor="title" className='text-lg'>Title:</Label>
         <Input type='text' id='title' name='title'/>
         </div>
 
         <div className="">
-        <Label htmlFor="code">Code:</Label>
+        <Label htmlFor="code" className='text-lg'>Code:</Label>
         <Textarea id='code' name='code'/>
         </div>
 
         <div className="flex flex-row gap-2">
-        <Button type='submit' className='mt-4'>Save</Button>
-        <Button className='mt-4'><Link href={`/`} scroll={true}>Back</Link></Button> 
+        <Button type='submit' className=''>Save</Button>
+        <Button className=''><Link href={`/`} scroll={true}>Back</Link></Button> 
         </div>
         </form>
     </div>
