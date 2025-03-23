@@ -1,35 +1,38 @@
+'use client'
 import React from 'react'
 // import { useState } from 'react'
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Input } from '@/components/ui/input'
-import { prisma } from '@/lib/prisma'
-import { redirect } from 'next/navigation'
+//import { prisma } from '@/lib/prisma'
+//import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { useActionState } from 'react'
+import * as actions from '@/actions/index'
+//import toast, { Toaster } from "react-hot-toast";
+//import { format } from 'path'
 
 
 
-const page = () => {
-    async function createSnippet(formdata:FormData){
-        'use server'//server action function
-        const title=formdata.get('title') as string;
-        const code=formdata.get('code') as string;
+const AddSnippet = () => {
+  const [formData,xyz]=useActionState(actions.createSnippet,{message:''});
 
-        const snippet=await prisma.snippet.create({
-          data:{
-            title :title,
-            code:code
-          }
-        })
-        redirect("/");
-        
-        
-    }
+  // if(formData.message){
+  //   toast.error(formData.message);
+  // }
+
+  // const displayToast=()=>{
+  //   if(formData.message){
+  //     toast.success(formData.message);
+  //   }
+  // }
+
+    
   return (
     <div className="">
         <h1 className='text-xl font-bold py-5'>Create New Snippet</h1>
-        <form className="flex flex-col gap-3" action={createSnippet}>
+        <form className="flex flex-col gap-3" action={xyz}>
         
         <div className="">
         <Label htmlFor="title" className='text-lg'>Title:</Label>
@@ -46,8 +49,12 @@ const page = () => {
         <Button className=''><Link href={`/`} scroll={true}>Back</Link></Button> 
         </div>
         </form>
+
+        {formData.message && <div className=" w-full p-3 bg-red-300 border-2 border-red-700 mt-4">
+          <p>{formData.message}</p>
+        </div>}
     </div>
   )
 }
 
-export default page
+export default AddSnippet;

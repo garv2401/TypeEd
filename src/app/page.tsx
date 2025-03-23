@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import Image from 'next/image'
 
+//export const dynamic='force-dynamic';//Disbable caching
+
 const page =async () => {
 
   const snippets=await prisma.snippet.findMany();
