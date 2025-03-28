@@ -65,6 +65,10 @@ async function updateSnippet(id: string, title: string, code: string) {
       code: code,
     },
   });
+  redirect(`/viewSnippet/${id}`);
+
+  //revalidatePath(`/viewSnippet/${id}`);
+  
 }
 
 async function deleteSnippet(id: string) {

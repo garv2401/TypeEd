@@ -66,7 +66,7 @@ const SnippetDetail =async ({ params }: { params: Promise<{ id: string }> })=> {
 }
 
 export default SnippetDetail;
-
+export const revalidate=0;
 //making this route from static to dynamic
 
 export const generateStaticParams=async()=>{
